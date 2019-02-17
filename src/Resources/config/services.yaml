@@ -1,0 +1,27 @@
+services:
+
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false  
+
+    Spinmasterj\BotManBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests,Drivers}'
+
+
+    Spinmasterj\BotManBundle\Service\Factory:
+        arguments:
+            $config: '%botman%'
+            $cacheDir: '%kernel.cache_dir%'
+
+    Spinmasterj\BotManBundle\Console\ChatCommand:
+        class: Spinmasterj\BotManBundle\Console\ChatCommand
+        tags:
+            - { name: console.command }
+
+    Spinmasterj\BotManBundle\Service\SkillFinder:
+        class: Spinmasterj\BotManBundle\Service\SkillFinder
+        arguments:
+            $config: '%botman%'
+            $container: '@service_container'
