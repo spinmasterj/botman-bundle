@@ -31,11 +31,10 @@ class Factory
      */
     public function createBotFramework(
         $botName = '',
-        $botFactory =
-        BotMan\BotMan\BotManFactory::class
+        $botFactory = \BotMan\BotMan\BotManFactory::class
     ): BotMan
     {
-        return $this->create(\BotMan\Drivers\BotFramework\BotFrameworkDriver::class, $config, $botName, $botFactory);
+        return $this->create(\BotMan\Drivers\BotFramework\BotFrameworkDriver::class, $botName, $botFactory);
     }
 
     /**
