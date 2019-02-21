@@ -3,9 +3,15 @@
 namespace Spinmasterj\BotManBundle\Skills;
 
 use BotMan\BotMan\BotMan;
+use Spinmasterj\BotManBundle\Drivers\SlackDriver;
 use Spinmasterj\BotManBundle\Service\SkillFinder;
 use Spinmasterj\BotManBundle\Skills\Skill;
 
+/**
+ * Class Help
+ *
+ * @package Spinmasterj\BotManBundle\Skills
+ */
 class Help extends Skill
 {
     /**
@@ -23,17 +29,11 @@ class Help extends Skill
      */
     public function teach(BotMan $botMan)
     {
-        $botMan->hears($this->getBotIdRegex() . '\s+help.*', function (BotMan $botMan) {
+        $botMan->hears($this->getBotIdRegex() . '?\s*help.*', function (BotMan $botMan) {
             $help = [];
 
             /** @var Skill $skill */
             foreach ($this->skills as $skill) {
-//                $prefixedHelp = array_map(function ($helpLine) use ($skill) {
-//                    return get_class_($skill) . ': ' . $helpLine;
-//                }, $skill->getHelp());
-//
-//                $help += $prefixedHelp;
-
                 $help += $skill->getHelp();
             }
 

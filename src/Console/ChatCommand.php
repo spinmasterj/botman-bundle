@@ -13,10 +13,18 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * Class ChatCommand
+ *
+ * @package Spinmasterj\BotManBundle\Console
+ */
 class ChatCommand extends Command
 {
     const ARG_BOT_NAME = 'botName';
 
+    /**
+     * @var string
+     */
     protected static $defaultName = 'bot:chat';
 
     /**
@@ -29,6 +37,9 @@ class ChatCommand extends Command
      */
     protected $skillFinder;
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(Factory $factory, SkillFinder $skillFinder)
     {
         $this->factory     = $factory;
@@ -37,6 +48,9 @@ class ChatCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function configure()
     {
         $this
@@ -44,6 +58,9 @@ class ChatCommand extends Command
             ->addArgument(self::ARG_BOT_NAME, InputArgument::REQUIRED, 'Name of Bot to chat with.');
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);

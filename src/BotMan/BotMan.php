@@ -9,6 +9,11 @@ use BotMan\BotMan\Interfaces\CacheInterface;
 use BotMan\BotMan\Interfaces\DriverInterface;
 use BotMan\BotMan\Interfaces\StorageInterface;
 
+/**
+ * Class BotMan
+ *
+ * @package Spinmasterj\BotManBundle\BotMan
+ */
 class BotMan extends BotManNative
 {
     /**

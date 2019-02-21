@@ -77,7 +77,6 @@ class SkillFinder
             );
         }
 
-
         $skills[] = (new Help($skills))
             ->setBotName($botName)
             ->setBotId($botId);

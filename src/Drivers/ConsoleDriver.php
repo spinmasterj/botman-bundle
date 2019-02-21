@@ -13,6 +13,11 @@ use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class ConsoleDriver
+ *
+ * @package Spinmasterj\BotManBundle\Drivers
+ */
 class ConsoleDriver implements DriverInterface
 {
     const DRIVER_NAME = 'Console';

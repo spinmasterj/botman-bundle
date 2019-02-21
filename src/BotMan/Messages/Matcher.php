@@ -8,6 +8,11 @@ use BotMan\BotMan\Interfaces\Middleware\Matching;
 use Illuminate\Support\Collection;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
+/**
+ * Class Matcher
+ *
+ * @package Spinmasterj\BotManBundle\BotMan\Messages
+ */
 class Matcher extends MatcherNative
 {
     /**

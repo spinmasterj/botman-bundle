@@ -4,6 +4,11 @@ namespace Spinmasterj\BotManBundle\Skills;
 
 use BotMan\BotMan\BotMan;
 
+/**
+ * Class Skill
+ *
+ * @package Spinmasterj\BotManBundle\Skills
+ */
 abstract class Skill
 {
     /**

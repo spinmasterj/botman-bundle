@@ -7,7 +7,13 @@ use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Cache\DoctrineCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use BotMan\BotMan\BotManFactory;
+use BotMan\Drivers\BotFramework\BotFrameworkDriver;
 
+/**
+ * Class Factory
+ *
+ * @package Spinmasterj\BotManBundle\Service
+ */
 class Factory
 {
     private $config;
@@ -104,7 +110,12 @@ class Factory
         return $botConfig['driver'][$driverName] ?? [];
     }
 
-    protected function buildConfigForBotMan($botName, $driverClass)
+    /**
+     * @param string $botName
+     * @param string $driverClass
+     * @return array
+     */
+    protected function buildConfigForBotMan(string $botName, string $driverClass): array
     {
         $driverConfig = $this->getDriverConfigForBot($botName, $driverClass);
 
@@ -115,7 +126,11 @@ class Factory
         ];
     }
 
-    protected function getDriverType($driverClass)
+    /**
+     * @param string $driverClass
+     * @return string
+     */
+    protected function getDriverType(string $driverClass): string
     {
         $driverNamespaceArray = explode('\\', $driverClass);
         $driverClassName      = end($driverNamespaceArray);

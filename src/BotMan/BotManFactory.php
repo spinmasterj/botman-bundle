@@ -12,6 +12,11 @@ use BotMan\BotMan\Cache\ArrayCache;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Http\Curl;
 
+/**
+ * Class BotManFactory
+ *
+ * @package Spinmasterj\BotManBundle\BotMan
+ */
 class BotManFactory extends BotManFactoryNative
 {
     /**

@@ -14,9 +14,18 @@ use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Symfony\Component\Console\Output\OutputInterface;
 use BotMan\Drivers\Slack\SlackDriver as NativeSlackDriver;
 
+/**
+ * Class SlackDriver
+ *
+ * @package Spinmasterj\BotManBundle\Drivers
+ */
 class SlackDriver extends NativeSlackDriver
 {
-    public function getUserById(string $id)
+    /**
+     * @param string $id
+     * @return User
+     */
+    public function getUserById(string $id): User
     {
         $response = $this->sendRequest('users.info', [
             'user' => $id,

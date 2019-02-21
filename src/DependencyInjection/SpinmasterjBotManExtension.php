@@ -7,8 +7,16 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
+/**
+ * Class SpinmasterjBotManExtension
+ *
+ * @package Spinmasterj\BotManBundle\DependencyInjection
+ */
 class SpinmasterjBotManExtension extends Extension
 {
+    /**
+     * @inheritdoc
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
