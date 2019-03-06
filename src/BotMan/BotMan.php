@@ -41,7 +41,7 @@ class BotMan extends BotManNative
         parent::__construct($cache, $driver, $config, $storage);
 
         $this->localCache = $cache;
-        $this->matcher = new Matcher();
+        $this->matcher    = new Matcher();
     }
 
     /**
@@ -67,31 +67,43 @@ class BotMan extends BotManNative
      */
     public function getUserById(string $id)
     {
-        if ($this->isUserId($id)) {
+        if ($this->isUserIdTag($id)) {
+            $id = $this->stripTagFromUserId($id);
+        }
 
-            if ($user = $this->localCache->get('user_' . $this->driver->getName() . '_' . $id)) {
-                return $user;
-            }
+        if (empty($id)) {
+            return null;
+        }
 
-            $user = $this->getDriver()->getUser(new IncomingMessage(null, $id, null));
-            if ($user->getId()) {
-                $this->localCache->put('user_' . $this->driver->getName() . '_' . $user->getId(), $user,
-                    $this->config['user_cache_time'] ?? 30);
-            }
-
+        if ($user = $this->localCache->get('user_' . $this->driver->getName() . '_' . $id)) {
             return $user;
         }
 
-        return null;
+        $user = $this->getDriver()->getUser(new IncomingMessage(null, $id, null));
+        if ($user->getId()) {
+            $this->localCache->put('user_' . $this->driver->getName() . '_' . $user->getId(), $user,
+                $this->config['user_cache_time'] ?? 30);
+        }
+
+        return $user;
     }
 
     /**
      * @param string $id
      * @return bool
      */
-    public function isUserId(string $id): bool
+    public function isUserIdTag(string $id): bool
     {
-        return preg_match('`^(<@[A-Z0-9]*)>$`i', $subject);
+        return preg_match('`^(<@[A-Z0-9]*)>$`i', $id);
+    }
+
+    /**
+     * @param string $id
+     * @return string|string[]|null
+     */
+    public function stripTagFromUserId(string $id)
+    {
+        return preg_replace('`^(<@)([A-Z0-9]*)(>)$`i', "$2", $id);
     }
 
     /**
